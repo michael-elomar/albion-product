@@ -9,4 +9,5 @@ TARGET_CROSS := $(HOME)/Apps/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-lin
 TARGET_IMAGE_FORMAT := ext4
 TARGET_IMAGE_OPTIONS := --size=512M
 
-
+# Add Base skeleton
+TARGET_SKEL_DIRS += $(TARGET_CONFIG_DIR)/../skel
