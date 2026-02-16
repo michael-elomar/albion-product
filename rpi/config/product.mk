@@ -4,6 +4,8 @@ TARGET_LIBC := eglibc
 
 TARGET_ARCH := aarch64
 TARGET_CPU := cortex-a72
+TARGET_LINUX_DIR := $(ALCHEMY_WORKSPACE_DIR)/packages/linux
+TARGET_NOSTRIP_FINAL := 1
 
 TARGET_CROSS := $(HOME)/Apps/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
 TARGET_IMAGE_FORMAT := ext4

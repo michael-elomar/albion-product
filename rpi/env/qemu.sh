@@ -6,11 +6,16 @@ VARIANT="rpi"
 
 OUT_DIR=$WORKSPACE_DIR/out/$PRODUCT-$VARIANT
 EXT4_IMAGE=$OUT_DIR/"$PRODUCT-$VARIANT".ext4
+KERNEL_IMAGE=$OUT_DIR/final/boot/Image
+
+file $KERNEL_IMAGE
 
 qemu-system-aarch64 \
-  -cpu cortex-a72 \
-  -M virt -m 1G -kernel $OUT_DIR/final/boot/Image \
-  -append "console=ttyAMA0 root=/dev/vda rw" \
-  -drive if=none,file=$EXT4_IMAGE,format=raw,id=hd0 \
-  -device virtio-blk-device,drive=hd0 \
-  -nographic
+    -M virt \
+    -cpu cortex-a72 \
+    -m 2048 \
+    -nographic \
+    -kernel $KERNEL_IMAGE \
+    -drive file=$EXT4_IMAGE,format=raw,if=none,id=hd0 \
+    -device virtio-blk-device,drive=hd0 \
+    -append "root=/dev/vda rw console=ttyAMA0"
